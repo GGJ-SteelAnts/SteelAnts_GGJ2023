@@ -9,6 +9,8 @@ public class CastleManager : MonoBehaviour
     public List<GameObject> units = new List<GameObject>();
     private List<GameObject> usableUnits = new List<GameObject>();
     public int level = 1;
+    private int neededWoodToLevelUp = 2;
+    private int actualHaveWood = 0;
     public float spawnUnitsInterval = 5.0f;
     private float lastSpawnInterval = 0.0f;
     public Transform spawnPoint;
@@ -33,6 +35,18 @@ public class CastleManager : MonoBehaviour
             lastSpawnInterval = Time.time + spawnUnitsInterval;
             SpawnUnits();
         }
+
+        if (actualHaveWood >= neededWoodToLevelUp)
+        {
+            level++;
+            actualHaveWood -= neededWoodToLevelUp;
+            neededWoodToLevelUp = neededWoodToLevelUp * 2;
+        }
+    }
+
+    public void GetWood()
+    {
+        actualHaveWood++;
     }
 
     public void SpawnUnits()
