@@ -592,7 +592,7 @@ MonoBehaviour:
   - {fileID: 1446060772088144466, guid: c2bfbdc8046a0204d8abbc3e9e64a73f, type: 3}
   - {fileID: 8966972224168003271, guid: 15ef312f5f145cc4a8b913f0bc781fce, type: 3}
   level: 1
-  spawnUnitsInterval: 2
+  spawnUnitsInterval: 5
   spawnPoint: {fileID: 815597103}
 --- !u!61 &1332577310
 BoxCollider2D:
