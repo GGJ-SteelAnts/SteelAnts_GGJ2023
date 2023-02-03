@@ -14,11 +14,9 @@ public class UnitManager : MonoBehaviour
     [HideInInspector]public bool haveWood = false;
     private SpriteRenderer UnitView;
     public List<Sprite> unitSprites = new List<Sprite>();
+    public List<Sprite> cutAnimations = new List<Sprite>();
     public float timeToCutWood = 2.0f;
     private float actualTimeToCutWood;
-    private int animationIndex = 0;
-
-    public List<Sprite> cutAnimations = new List<Sprite>();
     public float animationCutTime = 0.1f;
     private float actualCutTime = 0.0f;
     private int cutIndex = 0;
@@ -60,7 +58,7 @@ public class UnitManager : MonoBehaviour
 
     private void UnitAnimation()
     {
-        if (actualHealth <= 0)
+        if (status == "die")
         {
             if (unitSprites.Count > 2)
             {
@@ -69,7 +67,7 @@ public class UnitManager : MonoBehaviour
             return;
         }
 
-        if (status == "cut")
+        if (status == "cut" || status == "attack")
         {
             if (actualCutTime < Time.time)
             {
