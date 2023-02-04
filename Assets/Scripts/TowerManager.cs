@@ -10,6 +10,8 @@ public class TowerManager : MonoBehaviour
     public int damage = 0;
     public int slower = 0;
     public bool poison = false;
+    public float damageRate = 0.5f;
+    private float actualDamageRate;
 
     void Start()
     {
@@ -35,8 +37,30 @@ public class TowerManager : MonoBehaviour
         {
             if (type == Tree.Buildings.Spikes) {
                 UnitManager unit = collision.gameObject.GetComponent<UnitManager>();
-                unit.GetDamage(damage);
-                GetDamage(damage);
+                if (unit.status != "die") {
+                    actualDamageRate = Time.time + damageRate;
+                    unit.GetDamage(damage);
+                    GetDamage(damage);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (type == Tree.Buildings.Spikes)
+            {
+                if (actualDamageRate < Time.time) {
+                    UnitManager unit = collision.gameObject.GetComponent<UnitManager>();
+                    if (unit.status != "die")
+                    {
+                        actualDamageRate = Time.time + damageRate;
+                        unit.GetDamage(damage);
+                        GetDamage(damage);
+                    }
+                }
             }
         }
     }

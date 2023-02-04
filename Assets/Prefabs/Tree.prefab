@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2450096320354759160}
   - component: {fileID: 2450096320354758662}
   - component: {fileID: 2450096320354758661}
+  - component: {fileID: 801213187}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Tree
@@ -75,15 +76,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d7d189c0791f84058a7a5eb824ab1df8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1fe84f7059284e9a992de2992c2c3e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.53, y: 2.49}
+  m_Size: {x: 1.2, y: 2.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2450096320354758662
@@ -102,14 +103,22 @@ MonoBehaviour:
   actualHP: 0
   Stamina: 100
   actualStamina: 0
+  damage: 20
   buildingsPrice: 14000000050000000a000000
   towerBuildingCursor: {fileID: 2800000, guid: bf9cc5de7600d4491b6c16ce04e0efa2, type: 3}
   towerHoverCursor: {fileID: 2800000, guid: bd9cf4c6690ec4ecdb31d9c5528bdf20, type: 3}
   view:
-  - {fileID: 21300000, guid: d7d189c0791f84058a7a5eb824ab1df8, type: 3}
+  - {fileID: 21300000, guid: a1fe84f7059284e9a992de2992c2c3e5, type: 3}
   - {fileID: 21300000, guid: fcab6ef17d34041a997bdcf701db3f2b, type: 3}
   roots: {fileID: 0}
+  lifeOfRoot: 2
   building: 0
+  MainAudioSource: {fileID: 0}
+  MainNormalAudio: {fileID: 8300000, guid: 0d9e1a5ad1b7a3b4e9b04cbb41efeecd, type: 3}
+  MainHalfAudio: {fileID: 8300000, guid: fb045a48db97878458e043ddc00ed3ec, type: 3}
+  audioSource: {fileID: 801213187}
+  attackAudio: {fileID: 8300000, guid: 3d398fa3cdd03394b9dbab2af93aa633, type: 3}
+  buildAudios: []
   buildingsButtons:
   - {fileID: 0}
   - {fileID: 0}
@@ -136,7 +145,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.2, y: 2.4}
-    newSize: {x: 1.53, y: 2.49}
+    newSize: {x: 1.2, y: 2.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -144,3 +153,99 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2.4}
   m_EdgeRadius: 0
+--- !u!82 &801213187
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450096320354759161}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 130
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -23,8 +23,12 @@ public class Tree : MonoBehaviour
     private int actualLifeOfRoot;
     public bool building = false;
     private Buildings buildingTower = Buildings.Nothing;
+    public AudioSource MainAudioSource;
+    public AudioClip MainNormalAudio;
+    public AudioClip MainHalfAudio;
     public AudioSource audioSource;
     public AudioClip attackAudio;
+    public List<AudioClip> buildAudios = new List<AudioClip>();
 
     public List<GameObject> buildingsButtons = new List<GameObject>();
     public List<GameObject> towersPrefab = new List<GameObject>();
@@ -47,6 +51,25 @@ public class Tree : MonoBehaviour
         if (actualHP <= 0)
         {
             status = "dead";
+        }
+
+        if (actualHP <= HP /2)
+        {
+            if (MainAudioSource != null)
+            {
+                MainAudioSource.clip = MainHalfAudio;
+            }
+        } 
+        else
+        {
+            if (MainAudioSource != null)
+            {
+                MainAudioSource.clip = MainNormalAudio;
+            }
+        }
+        if (!MainAudioSource.isPlaying)
+        {
+            MainAudioSource.Play();
         }
 
         TreeAnimation();
@@ -88,6 +111,10 @@ public class Tree : MonoBehaviour
                     {
                         if (roots.roots[i] == hit.collider.gameObject && roots.rootsTower[i] == null)
                         {
+                            if (audioSource != null)
+                            {
+                                audioSource.PlayOneShot(buildAudios[Random.Range(0, buildAudios.Count)]);
+                            }
                             GameObject tower = Instantiate(towersPrefab[(int)buildingTower - 1], roots.gameObject.transform);
                             tower.transform.localPosition = roots.roots[i].transform.localPosition;
                             roots.rootsTower[i] = tower;
@@ -117,8 +144,6 @@ public class Tree : MonoBehaviour
                 }
             }
         }
-
-
     }
 
     public void TreeAnimation()
@@ -179,6 +204,10 @@ public class Tree : MonoBehaviour
         if (tower == (int)Buildings.Roots)
         {
             if (actualStamina - buildingsPrice[0] >= 0) {
+                if (audioSource != null)
+                {
+                    audioSource.PlayOneShot(buildAudios[Random.Range(0, buildAudios.Count)]);
+                }
                 ConsumeEnergy(buildingsPrice[0]);
                 roots.SpawnRoot();
             }

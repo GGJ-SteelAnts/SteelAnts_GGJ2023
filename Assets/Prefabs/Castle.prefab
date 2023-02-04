@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 06d45ac0683454cc185c3b1ea330b18e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d008302f2d0cc460e9feb85b08ef07fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   units:
-  - {fileID: 1446060772088144466, guid: c2bfbdc8046a0204d8abbc3e9e64a73f, type: 3}
   - {fileID: 8966972224168003271, guid: 15ef312f5f145cc4a8b913f0bc781fce, type: 3}
+  - {fileID: 6218963547411530787, guid: 26bf5f75162c6154a9b4a8e5fdd4531a, type: 3}
   level: 1
   neededWoodToLevelUp: 2
   spawnUnitsInterval: 5
