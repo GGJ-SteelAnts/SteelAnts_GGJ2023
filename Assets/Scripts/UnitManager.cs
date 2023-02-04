@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class UnitManager : MonoBehaviour
 {
-    public float health = 100;
-    private float actualHealth;
+    public int health = 100;
+    private int actualHealth;
     public int neededlevel = 0;
+    public int damage = 15;
+    public int energy = 10;
     public string status = "walk"; //walk,cut,attack,die
     [HideInInspector]public bool walk = true;
     public float walkSpeed = 5.0f;
@@ -20,6 +22,7 @@ public class UnitManager : MonoBehaviour
     public float animationCutTime = 0.1f;
     private float actualCutTime = 0.0f;
     private int cutIndex = 0;
+    private Tree tree;
 
     void Start()
     {
@@ -35,6 +38,7 @@ public class UnitManager : MonoBehaviour
 
         if (status == "cut" && actualTimeToCutWood < Time.time)
         {
+            tree.GetDamage(damage);
             status = "walk";
             haveWood = true;
             cutIndex = 0;
@@ -101,18 +105,18 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public void GetDamage(float damage)
+    public void GetDamage(int damage)
     {
         actualHealth -= damage;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Tree")
         {
             actualTimeToCutWood = Time.time + timeToCutWood;
             status = "cut";
+            tree = other.gameObject.GetComponent<Tree>();
         }
 
         if (other.gameObject.tag == "Castle")

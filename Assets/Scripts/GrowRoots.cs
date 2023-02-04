@@ -7,32 +7,29 @@ public class GrowRoots : MonoBehaviour
     public Tree Tree;
 
     public GameObject TreeRootPrefab;
-    public int numOfSegments = 1;
+    public List<GameObject> roots = new List<GameObject>();
 
-    public float interval = 5.0f;
-    private float intervalLast = 0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
+    public void SpawnRoot() {
+        GameObject newrootsegment = null;
+        Vector3 lastRootPosition = roots[roots.Count - 1].transform.localPosition;
+        newrootsegment = Instantiate(TreeRootPrefab, Vector3.zero, Quaternion.identity);
+        newrootsegment.transform.parent = this.gameObject.transform;
+        if (roots.Count > 0)
+        {
+            newrootsegment.transform.localPosition = new Vector3(1.44f + lastRootPosition.x, lastRootPosition.y, lastRootPosition.z);
+        }
+        else
+        {
+            newrootsegment.transform.localPosition = Vector3.zero;
+        }
+        roots.Add(newrootsegment);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DestroyRoot()
     {
-       
-       if (intervalLast < Time.time && Tree.Stamina > 0){
-            intervalLast = Time.time + interval;
-            spawnRoots();
-       }
-    }
-
-    void spawnRoots() {
-        GameObject newrootsegment = Instantiate(TreeRootPrefab, new Vector3((numOfSegments * 1.44f) + TreeRootPrefab.transform.position.x, TreeRootPrefab.transform.position.y, TreeRootPrefab.transform.position.z), Quaternion.identity);
-        newrootsegment.transform.parent = gameObject.transform;
-        Debug.Log( GameObject.Find("rootSegment").transform.position);
-        numOfSegments++;
-        Tree.Stamina -= 20;
+        if (roots.Count > 0) {
+            Destroy(roots[roots.Count - 1]);
+            roots.RemoveAt(roots.Count - 1);
+        }
     }
 }
