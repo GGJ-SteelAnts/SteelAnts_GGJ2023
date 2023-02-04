@@ -17,11 +17,14 @@ public class UnitManager : MonoBehaviour
     private SpriteRenderer UnitView;
     public List<Sprite> unitSprites = new List<Sprite>();
     public List<Sprite> cutAnimations = new List<Sprite>();
+    public List<Sprite> walkAnimations = new List<Sprite>();
+    public List<Sprite> deathAnimations = new List<Sprite>();
+    public List<Sprite> walkWithWoodAnimations = new List<Sprite>();
     public float timeToCutWood = 2.0f;
     private float actualTimeToCutWood;
-    public float animationCutTime = 0.1f;
-    private float actualCutTime = 0.0f;
-    private int cutIndex = 0;
+    public float animationTime = 0.1f;
+    private float actualAnimationTime = 0.0f;
+    private int animationIndex = 0;
     private Tree tree;
 
     void Start()
@@ -41,14 +44,14 @@ public class UnitManager : MonoBehaviour
             tree.GetDamage(damage);
             status = "walk";
             haveWood = true;
-            cutIndex = 0;
+            animationIndex = 0;
         }
 
         if (actualHealth <= 0)
         {
             status = "die";
             haveWood = false;
-            cutIndex = 0;
+            animationIndex = 0;
         }
     }
 
@@ -64,44 +67,76 @@ public class UnitManager : MonoBehaviour
     {
         if (status == "die")
         {
-            if (unitSprites.Count > 2)
+            if (actualAnimationTime < Time.time)
             {
-                UnitView.sprite = unitSprites[2];
+                if (deathAnimations.Count > animationIndex + 1)
+                {
+                    animationIndex++;
+                }
+                actualAnimationTime = Time.time + animationTime;
+            }
+            if (deathAnimations.Count > animationIndex)
+            {
+                UnitView.sprite = deathAnimations[animationIndex];
             }
             return;
         }
 
         if (status == "cut" || status == "attack")
         {
-            if (actualCutTime < Time.time)
+            if (actualAnimationTime < Time.time)
             {
-                if (cutAnimations.Count > cutIndex + 1)
+                if (cutAnimations.Count > animationIndex + 1)
                 {
-                    cutIndex++;
+                    animationIndex++;
                 } 
                 else
                 {
-                    cutIndex = 0;
+                    animationIndex = 0;
                 }
-                actualCutTime = Time.time + animationCutTime;
+                actualAnimationTime = Time.time + animationTime;
             }
-            if (cutAnimations.Count > cutIndex)
+            if (cutAnimations.Count > animationIndex)
             {
-                UnitView.sprite = cutAnimations[cutIndex];
+                UnitView.sprite = cutAnimations[animationIndex];
             }
             return;
         }
         if (haveWood)
         {
-            if (unitSprites.Count > 1)
+            if (actualAnimationTime < Time.time)
             {
-                UnitView.sprite = unitSprites[1];
+                if (walkWithWoodAnimations.Count > animationIndex + 1)
+                {
+                    animationIndex++;
+                }
+                else
+                {
+                    animationIndex = 0;
+                }
+                actualAnimationTime = Time.time + animationTime;
+            }
+            if (walkWithWoodAnimations.Count > animationIndex)
+            {
+                UnitView.sprite = walkWithWoodAnimations[animationIndex];
             }
             return;
         }
-        if (unitSprites.Count > 0)
+        if (actualAnimationTime < Time.time)
         {
-            UnitView.sprite = unitSprites[0];
+            if (walkAnimations.Count > animationIndex + 1)
+            {
+                animationIndex++;
+            }
+            else
+            {
+                animationIndex = 0;
+            }
+            actualAnimationTime = Time.time + animationTime;
+        }
+        if (walkAnimations.Count > animationIndex)
+        {
+            UnitView.sprite = walkAnimations[animationIndex];
         }
     }
 
@@ -116,6 +151,7 @@ public class UnitManager : MonoBehaviour
         {
             actualTimeToCutWood = Time.time + timeToCutWood;
             status = "cut";
+            animationIndex = 0;
             tree = other.gameObject.GetComponent<Tree>();
         }
 

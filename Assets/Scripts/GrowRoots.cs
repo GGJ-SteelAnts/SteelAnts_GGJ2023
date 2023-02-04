@@ -11,11 +11,11 @@ public class GrowRoots : MonoBehaviour
 
     public void SpawnRoot() {
         GameObject newrootsegment = null;
-        Vector3 lastRootPosition = roots[roots.Count - 1].transform.localPosition;
         newrootsegment = Instantiate(TreeRootPrefab, Vector3.zero, Quaternion.identity);
         newrootsegment.transform.parent = this.gameObject.transform;
         if (roots.Count > 0)
         {
+            Vector3 lastRootPosition = roots[roots.Count - 1].transform.localPosition;
             newrootsegment.transform.localPosition = new Vector3(1.44f + lastRootPosition.x, lastRootPosition.y, lastRootPosition.z);
         }
         else

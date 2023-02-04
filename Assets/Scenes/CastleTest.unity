@@ -1269,10 +1269,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 229609808}
     m_Modifications:
+    - target: {fileID: 4665116774815670480, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d008302f2d0cc460e9feb85b08ef07fa, type: 3}
     - target: {fileID: 4665116774815670481, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
       propertyPath: m_Name
       value: Castle
       objectReference: {fileID: 0}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: units.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: units.Array.data[0]
+      value: 
+      objectReference: {fileID: 8966972224168003271, guid: 15ef312f5f145cc4a8b913f0bc781fce, type: 3}
     - target: {fileID: 4665116774815670487, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
       propertyPath: m_RootOrder
       value: 3
