@@ -7,6 +7,7 @@ public class GrowRoots : MonoBehaviour
     public Tree Tree;
 
     public GameObject TreeRootPrefab;
+    public GameObject TreeEndRoot;
     public List<GameObject> roots = new List<GameObject>();
 
     public void SpawnRoot() {
@@ -22,6 +23,7 @@ public class GrowRoots : MonoBehaviour
         {
             newrootsegment.transform.localPosition = Vector3.zero;
         }
+        TreeEndRoot.transform.localPosition = new Vector3(newrootsegment.transform.localPosition.x + 1.2f, newrootsegment.transform.localPosition.y, newrootsegment.transform.localPosition.z);
         roots.Add(newrootsegment);
     }
 
@@ -30,6 +32,14 @@ public class GrowRoots : MonoBehaviour
         if (roots.Count > 0) {
             Destroy(roots[roots.Count - 1]);
             roots.RemoveAt(roots.Count - 1);
+            if (roots.Count > 1) {
+                Vector3 lastRootPosition = roots[roots.Count - 1].transform.localPosition;
+                TreeEndRoot.transform.localPosition = new Vector3(lastRootPosition.x + 1.2f, lastRootPosition.y, lastRootPosition.z);
+            } 
+            else
+            {
+                TreeEndRoot.transform.localPosition = new Vector3(-0.24f, 0,0);
+            }
         }
     }
 }
