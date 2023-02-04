@@ -29,7 +29,7 @@ public class GrowRoots : MonoBehaviour
     }
 
     void spawnRoots() {
-        GameObject newrootsegment = Instantiate(TreeRootPrefab, new Vector3(numOfSegments + TreeRootPrefab.transform.position.x, TreeRootPrefab.transform.position.y, TreeRootPrefab.transform.position.z), Quaternion.identity);
+        GameObject newrootsegment = Instantiate(TreeRootPrefab, new Vector3((numOfSegments * 1.44f) + TreeRootPrefab.transform.position.x, TreeRootPrefab.transform.position.y, TreeRootPrefab.transform.position.z), Quaternion.identity);
         newrootsegment.transform.parent = gameObject.transform;
         Debug.Log( GameObject.Find("rootSegment").transform.position);
         numOfSegments++;
