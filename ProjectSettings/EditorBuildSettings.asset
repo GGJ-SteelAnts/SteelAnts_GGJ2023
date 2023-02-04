@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CastleTest.unity
     guid: c142650f79c5d6849bf6269b0eb098c1
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 1cf65e19874453f409b9eaca4279ef99
   m_configObjects: {}

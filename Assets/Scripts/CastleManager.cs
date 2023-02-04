@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CastleManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class CastleManager : MonoBehaviour
     private float lastSpawnInterval = 0.0f;
     public Transform spawnPoint;
     private Tree tree;
+    public SpriteRenderer woodView;
+    public List<Sprite> woodsView = new List<Sprite>();
 
     void Start()
     {
@@ -32,6 +35,12 @@ public class CastleManager : MonoBehaviour
 
     void Update()
     {
+        if (actualHealth <= 0)
+        {
+            PlayerPrefs.SetInt("victory", 1);
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
+        }
+
         if (lastSpawnInterval < Time.time)
         {
             lastSpawnInterval = Time.time + spawnUnitsInterval;
@@ -52,6 +61,15 @@ public class CastleManager : MonoBehaviour
                     usableUnits.Add(unit);
                 }
             }
+        }
+
+        if (woodsView.Count > actualHaveWood && actualHaveWood >= 0)
+        {
+            woodView.sprite = woodsView[actualHaveWood];
+        }
+        else
+        {
+            woodView.sprite = woodsView[0];
         }
     }
 

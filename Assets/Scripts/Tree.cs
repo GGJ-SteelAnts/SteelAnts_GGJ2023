@@ -52,7 +52,8 @@ public class Tree : MonoBehaviour
 
         if (actualHP <= 0)
         {
-            status = "dead";
+            PlayerPrefs.SetInt("victory", 0);
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
         }
 
         if (actualHP <= HP /2)
