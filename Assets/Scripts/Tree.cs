@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Tree : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Tree : MonoBehaviour
     [HideInInspector]public int actualHP;
     public int Stamina = 100;
     [HideInInspector]public int actualStamina;
+    public int damage = 20;
     public enum Buildings {Nothing, Roots, Tree, Spikes};
     public int[] buildingsPrice = { 20, 5, 10 };
     public Texture2D towerBuildingCursor;
@@ -17,14 +19,19 @@ public class Tree : MonoBehaviour
     public List<Sprite> view = new List<Sprite>();
     private SpriteRenderer treeView;
     public GrowRoots roots;
+    public int lifeOfRoot = 2;
+    private int actualLifeOfRoot;
     public bool building = false;
     private Buildings buildingTower = Buildings.Nothing;
+    public AudioSource audioSource;
+    public AudioClip attackAudio;
 
     public List<GameObject> buildingsButtons = new List<GameObject>();
     public List<GameObject> towersPrefab = new List<GameObject>();
 
     void Start()
     {
+        actualLifeOfRoot = lifeOfRoot;
         treeView = this.GetComponent<SpriteRenderer>();
         actualHP = HP;
         actualStamina = Stamina;
@@ -32,6 +39,11 @@ public class Tree : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+        }
+
         if (actualHP <= 0)
         {
             status = "dead";
@@ -69,6 +81,7 @@ public class Tree : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.zero);
             if (hit.collider != null && hit.collider.gameObject.tag == "Root")
             {
+                bool canBuild = true;
                 if (Input.GetMouseButton(0))
                 {
                     for (int i = 0; i < roots.roots.Count; i++)
@@ -82,14 +95,26 @@ public class Tree : MonoBehaviour
                             buildingTower = Buildings.Nothing;
                             building = false;
                             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-                        }
+                            break;
+                        } 
                     }
                 }
-                Cursor.SetCursor(towerHoverCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
+                for (int i = 0; i < roots.roots.Count; i++)
+                {
+                    if (roots.roots[i] == hit.collider.gameObject && roots.rootsTower[i] != null)
+                    {
+                        canBuild = false;
+                    }
+                }
+                if (building == true && canBuild) {
+                    Cursor.SetCursor(towerHoverCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
+                }
             } 
             else
             {
-                Cursor.SetCursor(towerBuildingCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
+                if (building == true) {
+                    Cursor.SetCursor(towerBuildingCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
+                }
             }
         }
 
@@ -124,11 +149,27 @@ public class Tree : MonoBehaviour
         actualStamina -= energyTake;
     }
 
+    public void AttackSound()
+    {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(attackAudio);
+        }
+    }
+
     public void GetDamage(int damage)
     {
         if (roots != null && roots.roots.Count > 0)
         {
-            roots.DestroyRoot();
+            if (actualLifeOfRoot > 0)
+            {
+                actualLifeOfRoot--;
+            } 
+            else
+            {
+                roots.DestroyRoot();
+                actualLifeOfRoot = lifeOfRoot;
+            }
         }
         actualHP -= damage;
     }
@@ -145,6 +186,12 @@ public class Tree : MonoBehaviour
         else if(tower == (int)Buildings.Tree)
         {
             buildingTower = Buildings.Tree;
+            building = true;
+            Cursor.SetCursor(towerBuildingCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
+        }
+        else if (tower == (int)Buildings.Spikes)
+        {
+            buildingTower = Buildings.Spikes;
             building = true;
             Cursor.SetCursor(towerBuildingCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
         }

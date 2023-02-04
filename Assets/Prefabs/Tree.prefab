@@ -83,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 1.53, y: 2.49}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2450096320354758662
@@ -101,12 +101,23 @@ MonoBehaviour:
   HP: 100
   actualHP: 0
   Stamina: 100
+  actualStamina: 0
   buildingsPrice: 14000000050000000a000000
-  towerBuildingCursor: {fileID: 2800000, guid: 85434f054cabb42b192e649ce13d4ad8, type: 3}
+  towerBuildingCursor: {fileID: 2800000, guid: bf9cc5de7600d4491b6c16ce04e0efa2, type: 3}
+  towerHoverCursor: {fileID: 2800000, guid: bd9cf4c6690ec4ecdb31d9c5528bdf20, type: 3}
   view:
   - {fileID: 21300000, guid: d7d189c0791f84058a7a5eb824ab1df8, type: 3}
   - {fileID: 21300000, guid: fcab6ef17d34041a997bdcf701db3f2b, type: 3}
   roots: {fileID: 0}
+  building: 0
+  buildingsButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  towersPrefab:
+  - {fileID: 5127448301996859594, guid: 20162f91a99135148be6959d0ccff85b, type: 3}
+  - {fileID: 4124693809757940066, guid: 828d993e83bf8914aae3b71e13275d91, type: 3}
+  - {fileID: 6543866751016902086, guid: 0dc2646dc8f514047ba83e105bc7b613, type: 3}
 --- !u!61 &2450096320354758661
 BoxCollider2D:
   m_ObjectHideFlags: 0

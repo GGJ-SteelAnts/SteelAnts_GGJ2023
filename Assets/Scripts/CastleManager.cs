@@ -14,9 +14,11 @@ public class CastleManager : MonoBehaviour
     public float spawnUnitsInterval = 5.0f;
     private float lastSpawnInterval = 0.0f;
     public Transform spawnPoint;
+    private Tree tree;
 
     void Start()
     {
+        tree = GameObject.FindGameObjectWithTag("Tree").GetComponent<Tree>();
         actualHealth = health;
         foreach (GameObject unit in units)
         {
@@ -62,6 +64,16 @@ public class CastleManager : MonoBehaviour
     {
         if (usableUnits.Count != 0) {
             Instantiate(usableUnits[Random.Range(0, usableUnits.Count)], spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "AttackRoot")
+        {
+            actualHealth -= tree.damage;
+            tree.roots.DestroyRoot();
+            tree.AttackSound();
         }
     }
 }

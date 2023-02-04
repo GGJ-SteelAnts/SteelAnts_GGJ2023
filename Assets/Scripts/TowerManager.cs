@@ -4,15 +4,40 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Tree.Buildings type = Tree.Buildings.Nothing;
+    public int health = 60;
+    private int actualHealth;
+    public int damage = 0;
+    public int slower = 0;
+    public bool poison = false;
+
     void Start()
     {
-        
+        actualHealth = health;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (actualHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void GetDamage(int damageTake)
+    {
+        actualHealth -= damageTake;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (type == Tree.Buildings.Spikes) {
+                UnitManager unit = collision.gameObject.GetComponent<UnitManager>();
+                unit.GetDamage(damage);
+                GetDamage(damage);
+            }
+        }
     }
 }

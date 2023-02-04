@@ -39,7 +39,7 @@ public class GrowRoots : MonoBehaviour
                 Destroy(rootsTower[id]);
                 rootsTower.RemoveAt(id);
             }
-            if (roots.Count > 1) {
+            if (roots.Count > 0) {
                 Vector3 lastRootPosition = roots[roots.Count - 1].transform.localPosition;
                 TreeEndRoot.transform.localPosition = new Vector3(lastRootPosition.x + 1.2f, lastRootPosition.y, lastRootPosition.z);
             } 

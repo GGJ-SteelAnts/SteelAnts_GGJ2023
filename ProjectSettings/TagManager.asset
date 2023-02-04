@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Root
   - Tower
+  - AttackRoot
   layers:
   - Default
   - TransparentFX

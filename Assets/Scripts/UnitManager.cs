@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class UnitManager : MonoBehaviour
 {
     public int health = 100;
-    private int actualHealth;
+    public int actualHealth;
     public int neededlevel = 0;
     public int damage = 15;
+    public float damageRate = 0.5f;
+    private float actualDamageRate;
     public int energy = 10;
     public string status = "walk"; //walk,cut,attack,die
     [HideInInspector]public bool walk = true;
@@ -25,10 +27,15 @@ public class UnitManager : MonoBehaviour
     public float animationTime = 0.1f;
     private float actualAnimationTime = 0.0f;
     private int animationIndex = 0;
+    private TowerManager targetTower;
     private Tree tree;
+    public AudioSource audioSource;
+    public List<AudioClip> cutAudios = new List<AudioClip>();
+    public List<AudioClip> deathAudios = new List<AudioClip>();
 
     void Start()
     {
+        tree = GameObject.FindGameObjectWithTag("Tree").GetComponent<Tree>();
         actualHealth = health;
         UnitView = this.GetComponentInChildren<SpriteRenderer>();
     }
@@ -47,12 +54,24 @@ public class UnitManager : MonoBehaviour
             animationIndex = 0;
         }
 
+        if (status == "attack" && actualDamageRate <= Time.time)
+        {
+            actualDamageRate = Time.time + damageRate;
+            targetTower.GetDamage(damage);
+        }
+
         if (actualHealth <= 0)
         {
+            if (status != "die")
+            {
+                animationIndex = 0;
+                tree.ConsumeEnergy(-energy);
+                Destroy(this.gameObject, 15f);
+            }
             status = "die";
             haveWood = false;
-            animationIndex = 0;
         }
+        UnitAudio();
     }
 
     private void UnitMove()
@@ -72,7 +91,7 @@ public class UnitManager : MonoBehaviour
                 if (deathAnimations.Count > animationIndex + 1)
                 {
                     animationIndex++;
-                }
+                } 
                 actualAnimationTime = Time.time + animationTime;
             }
             if (deathAnimations.Count > animationIndex)
@@ -140,6 +159,27 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    public void UnitAudio()
+    {
+        if (audioSource != null)
+        {
+            if (!audioSource.isPlaying) {
+                switch (status)
+                {
+                    case "cut":
+                    case "attack":
+                        audioSource.PlayOneShot(cutAudios[Random.Range(0, cutAudios.Count)]);
+                        break;
+                    case "die":
+                        if (animationIndex == 0) {
+                            audioSource.PlayOneShot(deathAudios[Random.Range(0, deathAudios.Count)]);
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
     public void GetDamage(int damage)
     {
         actualHealth -= damage;
@@ -147,21 +187,43 @@ public class UnitManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Tree")
+        if (status != "die")
         {
-            actualTimeToCutWood = Time.time + timeToCutWood;
-            status = "cut";
-            animationIndex = 0;
-            tree = other.gameObject.GetComponent<Tree>();
-        }
-
-        if (other.gameObject.tag == "Castle")
-        {
-            if (haveWood)
+            if (other.gameObject.tag == "Tree")
             {
-                CastleManager castle = other.gameObject.GetComponent<CastleManager>();
-                castle.GetWood();
-                haveWood = false;
+                actualTimeToCutWood = Time.time + timeToCutWood;
+                status = "cut";
+                animationIndex = 0;
+            }
+
+            if (other.gameObject.tag == "Tower")
+            {
+                targetTower = other.gameObject.GetComponent<TowerManager>();
+                status = "attack";
+                animationIndex = 0;
+            }
+
+            if (other.gameObject.tag == "Castle")
+            {
+                if (haveWood)
+                {
+                    CastleManager castle = other.gameObject.GetComponent<CastleManager>();
+                    castle.GetWood();
+                    haveWood = false;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (status != "die")
+        {
+            if (other.gameObject.tag == "Tower")
+            {
+                targetTower = null;
+                status = "walk";
+                animationIndex = 0;
             }
         }
     }
