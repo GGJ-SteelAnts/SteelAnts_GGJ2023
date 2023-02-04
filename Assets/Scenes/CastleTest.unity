@@ -1232,7 +1232,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1866833511}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 801213185}
+        m_TargetAssemblyTypeName: Tree, Assembly-CSharp
+        m_MethodName: TreeBuild
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1866833511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,6 +1370,10 @@ PrefabInstance:
       propertyPath: Tree
       value: 
       objectReference: {fileID: 801213185}
+    - target: {fileID: 588924049861857510, guid: 50d4fff1ab2d77e4d97af0f553ccfc2e, type: 3}
+      propertyPath: rootsTower.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5693707018469158953, guid: 50d4fff1ab2d77e4d97af0f553ccfc2e, type: 3}
       propertyPath: m_Name
       value: roots
@@ -1420,33 +1436,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1085831318}
     - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: buildingsPrice.Array.size
+      propertyPath: towerHoverCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: 85434f054cabb42b192e649ce13d4ad8, type: 3}
+    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
+      propertyPath: towersPrefab.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: buildingsPrice.Array.data[1]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: buildingsPrice.Array.data[2]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: towersBuildingMouse.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: towersBuildingMouse.Array.data[1]
+      propertyPath: towersPrefab.Array.data[0]
       value: 
+      objectReference: {fileID: 5127448301996859594, guid: 20162f91a99135148be6959d0ccff85b, type: 3}
+    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
+      propertyPath: towersPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 4124693809757940066, guid: 828d993e83bf8914aae3b71e13275d91, type: 3}
+    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
+      propertyPath: towersPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 6543866751016902086, guid: 0dc2646dc8f514047ba83e105bc7b613, type: 3}
+    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
+      propertyPath: buildingsButtons.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: towersBuildingMouse.Array.data[2]
+      propertyPath: buildingsButtons.Array.data[0]
       value: 
-      objectReference: {fileID: 2800000, guid: bf608f6da7880454dbc126fe3b9e5884, type: 3}
+      objectReference: {fileID: 616333855}
     - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: towersBuildingMouse.Array.data[3]
+      propertyPath: buildingsButtons.Array.data[1]
       value: 
-      objectReference: {fileID: 2800000, guid: 371606ee0003cdc45aa5aad908a797f2, type: 3}
+      objectReference: {fileID: 1115413629}
+    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
+      propertyPath: buildingsButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1866833508}
     - target: {fileID: 2450096320354758663, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
       propertyPath: m_RootOrder
       value: 1

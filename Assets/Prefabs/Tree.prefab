@@ -99,7 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  actualHP: 0
   Stamina: 100
+  buildingsPrice: 14000000050000000a000000
+  towerBuildingCursor: {fileID: 2800000, guid: 85434f054cabb42b192e649ce13d4ad8, type: 3}
   view:
   - {fileID: 21300000, guid: d7d189c0791f84058a7a5eb824ab1df8, type: 3}
   - {fileID: 21300000, guid: fcab6ef17d34041a997bdcf701db3f2b, type: 3}

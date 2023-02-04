@@ -7,6 +7,8 @@ TagManager:
   - Castle
   - Tree
   - Enemy
+  - Root
+  - Tower
   layers:
   - Default
   - TransparentFX

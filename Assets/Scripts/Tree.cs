@@ -6,18 +6,22 @@ using UnityEngine.UI;
 public class Tree : MonoBehaviour
 {
     public int HP = 100;
-    public int actualHP;
+    [HideInInspector]public int actualHP;
     public int Stamina = 100;
-    private int actualStamina;
+    [HideInInspector]public int actualStamina;
     public enum Buildings {Nothing, Roots, Tree, Spikes};
     public int[] buildingsPrice = { 20, 5, 10 };
     public Texture2D towerBuildingCursor;
+    public Texture2D towerHoverCursor;
     private string status = "life"; //life, halfDead, dead
     public List<Sprite> view = new List<Sprite>();
     private SpriteRenderer treeView;
     public GrowRoots roots;
-    private bool building = false;
+    public bool building = false;
     private Buildings buildingTower = Buildings.Nothing;
+
+    public List<GameObject> buildingsButtons = new List<GameObject>();
+    public List<GameObject> towersPrefab = new List<GameObject>();
 
     void Start()
     {
@@ -34,6 +38,62 @@ public class Tree : MonoBehaviour
         }
 
         TreeAnimation();
+
+        for (int i = 0; i < buildingsButtons.Count; i++)
+        {
+            if (building)
+            {
+                buildingsButtons[i].GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                if (actualStamina - buildingsPrice[i] < 0)
+                {
+                    buildingsButtons[i].GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    buildingsButtons[i].GetComponent<Button>().interactable = true;
+                }
+            }
+        }
+
+        if (building == true)
+        {
+            if (Input.GetMouseButton(1)) {
+                buildingTower = Buildings.Nothing;
+                building = false;
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            }
+
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector3.zero);
+            if (hit.collider != null && hit.collider.gameObject.tag == "Root")
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    for (int i = 0; i < roots.roots.Count; i++)
+                    {
+                        if (roots.roots[i] == hit.collider.gameObject && roots.rootsTower[i] == null)
+                        {
+                            GameObject tower = Instantiate(towersPrefab[(int)buildingTower - 1], roots.gameObject.transform);
+                            tower.transform.localPosition = roots.roots[i].transform.localPosition;
+                            roots.rootsTower[i] = tower;
+                            ConsumeEnergy(buildingsPrice[(int)buildingTower - 1]);
+                            buildingTower = Buildings.Nothing;
+                            building = false;
+                            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                        }
+                    }
+                }
+                Cursor.SetCursor(towerHoverCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
+            } 
+            else
+            {
+                Cursor.SetCursor(towerBuildingCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
+            }
+        }
+
+
     }
 
     public void TreeAnimation()
@@ -86,7 +146,7 @@ public class Tree : MonoBehaviour
         {
             buildingTower = Buildings.Tree;
             building = true;
-            Cursor.SetCursor(towerBuildingCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.Auto);
+            Cursor.SetCursor(towerBuildingCursor, new Vector2(towerBuildingCursor.width / 2, towerBuildingCursor.height / 2), CursorMode.ForceSoftware);
         }
     }
 }
