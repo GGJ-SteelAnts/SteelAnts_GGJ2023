@@ -107,9 +107,18 @@ MonoBehaviour:
   buildingsPrice: 14000000050000000a000000
   towerBuildingCursor: {fileID: 2800000, guid: bf9cc5de7600d4491b6c16ce04e0efa2, type: 3}
   towerHoverCursor: {fileID: 2800000, guid: bd9cf4c6690ec4ecdb31d9c5528bdf20, type: 3}
-  view:
-  - {fileID: 21300000, guid: a1fe84f7059284e9a992de2992c2c3e5, type: 3}
-  - {fileID: 21300000, guid: fcab6ef17d34041a997bdcf701db3f2b, type: 3}
+  viewGood:
+  - {fileID: 21300000, guid: dc4345bb45a38407390ff97186f86d7b, type: 3}
+  - {fileID: 21300000, guid: 88dee080c98354c1f80d1e36286e4378, type: 3}
+  - {fileID: 21300000, guid: 8c9af3108da8d40fcb018be9167bfd97, type: 3}
+  - {fileID: 21300000, guid: 3062e3de38ecd4308b680bd5ae512b58, type: 3}
+  - {fileID: 21300000, guid: dc99437169f474a1786d149ed7bd3cd6, type: 3}
+  viewEvil:
+  - {fileID: 21300000, guid: a8e11f48c37ee43848dfae685aac441f, type: 3}
+  - {fileID: 21300000, guid: c9b59895a656d42f8b731d45ed9f7c99, type: 3}
+  - {fileID: 21300000, guid: edaae95ae72614911895ec5a434230a9, type: 3}
+  - {fileID: 21300000, guid: 24f49c4096b8f49d2a4b3a1673694c2f, type: 3}
+  - {fileID: 21300000, guid: 7c8d480909b8a49c29bc74aac6e0885e, type: 3}
   roots: {fileID: 0}
   lifeOfRoot: 2
   building: 0
@@ -118,7 +127,15 @@ MonoBehaviour:
   MainHalfAudio: {fileID: 8300000, guid: fb045a48db97878458e043ddc00ed3ec, type: 3}
   audioSource: {fileID: 801213187}
   attackAudio: {fileID: 8300000, guid: 3d398fa3cdd03394b9dbab2af93aa633, type: 3}
-  buildAudios: []
+  buildAudios:
+  - {fileID: 8300000, guid: d8604fb6204fe0b459026f8bd712b763, type: 3}
+  - {fileID: 8300000, guid: ef988a8632122f5468be9b2a8e6e00f0, type: 3}
+  - {fileID: 8300000, guid: 0d3c9e14e1e5d0049917bec86c99f3fa, type: 3}
+  - {fileID: 8300000, guid: 4f0fb806cf67ebd479215749e8345177, type: 3}
+  - {fileID: 8300000, guid: 2f73a3fc6c030e44dbc42a70fd66531b, type: 3}
+  - {fileID: 8300000, guid: 1a2f902dc15fdeb41bb93ce887562a01, type: 3}
+  - {fileID: 8300000, guid: 631e12ae024b8be4d89ad211026e4dae, type: 3}
+  - {fileID: 8300000, guid: bd78bb5584bd0624ebd549e30bb9a6d9, type: 3}
   buildingsButtons:
   - {fileID: 0}
   - {fileID: 0}

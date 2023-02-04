@@ -16,7 +16,8 @@ public class Tree : MonoBehaviour
     public Texture2D towerBuildingCursor;
     public Texture2D towerHoverCursor;
     private string status = "life"; //life, halfDead, dead
-    public List<Sprite> view = new List<Sprite>();
+    public List<Sprite> viewGood = new List<Sprite>();
+    public List<Sprite> viewEvil = new List<Sprite>();
     private SpriteRenderer treeView;
     public GrowRoots roots;
     public int lifeOfRoot = 2;
@@ -45,6 +46,7 @@ public class Tree : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
 
@@ -148,24 +150,29 @@ public class Tree : MonoBehaviour
 
     public void TreeAnimation()
     {
-        if (status == "dead")
-        {
-            if (view.Count > 2)
-            {
-                treeView.sprite = view[2];
-            }
-            return;
-        }
+        float oneProcent = Stamina / 100;
+        float value = oneProcent * 20;
+        int canBeDelete = (int)(actualStamina / value);
         if (actualHP < HP / 2)
         {
-            if (view.Count > 1) {
-                treeView.sprite = view[1];
+
+            if (viewEvil.Count > canBeDelete - 1 && canBeDelete - 1 >= 0) {
+                treeView.sprite = viewEvil[canBeDelete - 1];
+            } 
+            else
+            {
+                treeView.sprite = viewEvil[0];
             }
             return;
         }
-        if (view.Count > 0)
+
+        if (viewGood.Count > canBeDelete - 1 && canBeDelete - 1 >= 0)
         {
-            treeView.sprite = view[0];
+            treeView.sprite = viewGood[canBeDelete - 1];
+        }
+        else
+        {
+            treeView.sprite = viewGood[0];
         }
     }
 

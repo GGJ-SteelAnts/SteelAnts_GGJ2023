@@ -137,7 +137,7 @@ MonoBehaviour:
   neededlevel: 2
   damage: 15
   damageRate: 0.25
-  energy: 30
+  energy: 40
   status: walk
   walk: 1
   walkSpeed: 1

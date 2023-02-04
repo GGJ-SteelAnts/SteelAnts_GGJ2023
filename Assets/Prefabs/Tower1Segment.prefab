@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  health: 15
+  health: 10
   damage: 2
   slower: 0
   poison: 0

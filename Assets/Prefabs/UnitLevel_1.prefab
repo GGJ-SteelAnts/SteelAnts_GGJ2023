@@ -133,9 +133,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  actualHealth: 0
   neededlevel: 1
   damage: 15
-  energy: 10
+  damageRate: 0.5
+  energy: 25
   status: walk
   walk: 1
   walkSpeed: 2

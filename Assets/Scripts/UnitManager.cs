@@ -221,6 +221,7 @@ public class UnitManager : MonoBehaviour
         {
             if (other.gameObject.tag == "Tower")
             {
+                haveWood = true;
                 targetTower = null;
                 status = "walk";
                 animationIndex = 0;
