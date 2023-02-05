@@ -14,13 +14,6 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        if (Screen.fullScreen) {
-            Screen.SetResolution(1920, 960, true); //1920x960 , 960x480
-        } 
-        else
-        {
-            Screen.SetResolution(960, 480, false); //1920x960 , 960x480
-        }
         if (victoryPanel != null && losePanel != null) {
             if (PlayerPrefs.GetInt("victory") == 1)
             {
@@ -30,6 +23,18 @@ public class MenuManager : MonoBehaviour
             {
                 losePanel.SetActive(true);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (Screen.fullScreen && (Screen.currentResolution.width != 1920 || Screen.currentResolution.width != 960))
+        {
+            Screen.SetResolution(1920, 960, true); //1920x960 , 960x480
+        }
+        else if (Screen.fullScreen && (Screen.currentResolution.width != 960 || Screen.currentResolution.width != 480))
+        {
+            Screen.SetResolution(960, 480, false); //1920x960 , 960x480
         }
     }
 

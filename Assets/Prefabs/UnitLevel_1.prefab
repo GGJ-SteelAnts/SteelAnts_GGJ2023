@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: 0
-  health: 15
+  health: 12
   actualHealth: 0
   neededlevel: 1
   damage: 15

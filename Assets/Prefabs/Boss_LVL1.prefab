@@ -179,6 +179,10 @@ MonoBehaviour:
   - {fileID: -1387355816, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
   - {fileID: -1212752081, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
   - {fileID: -1898767725, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 612058151, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1207721482, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 249366628, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: -945071575, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
   walkWithWoodAnimations: []
   timeToCutWood: 1
   animationTime: 0.1

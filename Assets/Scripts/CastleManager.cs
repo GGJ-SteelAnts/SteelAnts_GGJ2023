@@ -59,7 +59,7 @@ public class CastleManager : MonoBehaviour
 
         if (lastSpawnInterval < Time.time)
         {
-            lastSpawnInterval = Time.time + spawnUnitsInterval - (tree.roots.roots.Count * (bossComming != null ? 0.01f : 0.35f));
+            lastSpawnInterval = Time.time + spawnUnitsInterval - (tree.roots.roots.Count * (bossComming != null ? 0.01f : 0.32f));
             unitCounter++;
             if (unitCounter >= unitsBeforBoss) {
                 unitCounter = 0;
