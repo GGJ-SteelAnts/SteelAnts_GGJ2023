@@ -9,6 +9,7 @@ public class CastleManager : MonoBehaviour
     private float actualHealth;
     public List<GameObject> units = new List<GameObject>();
     private List<GameObject> usableUnits = new List<GameObject>();
+    public List<GameObject> bosses = new List<GameObject>();
     public int level = 1;
     public int neededWoodToLevelUp = 2;
     private int actualHaveWood = 0;
@@ -16,10 +17,13 @@ public class CastleManager : MonoBehaviour
     private float lastSpawnInterval = 0.0f;
     public Transform spawnPoint;
     private Tree tree;
+    public SpriteRenderer castleView;
+    public Sprite castleUnderHalfHealth;
     public SpriteRenderer woodView;
     public List<Sprite> woodsView = new List<Sprite>();
     public List<AudioClip> upgradeAudios = new List<AudioClip>();
     public AudioSource audioSource;
+    public int unitCounter = 0;
 
     void Start()
     {
@@ -37,6 +41,11 @@ public class CastleManager : MonoBehaviour
 
     void Update()
     {
+        if (actualHealth <= health/2)
+        {
+            castleView.sprite = castleUnderHalfHealth;
+        }
+
         if (actualHealth <= 0)
         {
             PlayerPrefs.SetInt("victory", 1);
@@ -46,7 +55,13 @@ public class CastleManager : MonoBehaviour
         if (lastSpawnInterval < Time.time)
         {
             lastSpawnInterval = Time.time + spawnUnitsInterval - (tree.roots.roots.Count * 0.35f);
-            SpawnUnits();
+            unitCounter++;
+            if (unitCounter >= 50) {
+                unitCounter = 0;
+                SpawnBoss();
+            } else {
+                SpawnUnits();
+            }
         }
 
         if (actualHaveWood >= neededWoodToLevelUp)
@@ -88,6 +103,14 @@ public class CastleManager : MonoBehaviour
     {
         if (usableUnits.Count != 0) {
             Instantiate(usableUnits[Random.Range(0, usableUnits.Count)], spawnPoint.position, spawnPoint.rotation);
+        }
+    }
+
+    public void SpawnBoss()
+    {
+        if (bosses.Count != 0)
+        {
+            Instantiate(bosses[Random.Range(0, bosses.Count)], spawnPoint.position, spawnPoint.rotation);
         }
     }
 

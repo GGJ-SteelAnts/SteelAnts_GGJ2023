@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UnitManager : MonoBehaviour
 {
+    public bool boss = false;
     public int health = 100;
     public int actualHealth;
     public int neededlevel = 0;
@@ -62,9 +63,11 @@ public class UnitManager : MonoBehaviour
 
         if (status == "cut" && actualTimeToCutWood < Time.time)
         {
-            tree.GetDamage(damage);
+            tree.GetDamage(damage * (boss ? 2 : 1));
             status = "walk";
-            haveWood = true;
+            if (!boss) {
+                haveWood = true;
+            }
             animationIndex = 0;
         }
 
@@ -242,11 +245,13 @@ public class UnitManager : MonoBehaviour
 
             if (other.gameObject.tag == "Enemy")
             {
-                UnitManager unit = other.gameObject.GetComponent<UnitManager>();
-                if (!unit.haveWood && unit.status != "die" && unit.waitTarget != this.gameObject && status == "walk" && !haveWood)
-                {
-                    waitTarget = other.gameObject;
-                    status = "wait";
+                if (!boss) {
+                    UnitManager unit = other.gameObject.GetComponent<UnitManager>();
+                    if (!unit.haveWood && unit.status != "die" && unit.waitTarget != this.gameObject && status == "walk" && !haveWood && !unit.boss)
+                    {
+                        waitTarget = other.gameObject;
+                        status = "wait";
+                    }
                 }
             }
         }
@@ -258,7 +263,10 @@ public class UnitManager : MonoBehaviour
         {
             if (other.gameObject.tag == "Tower")
             {
-                haveWood = true;
+                if (!boss)
+                {
+                    haveWood = true;
+                }
                 targetTower = null;
                 status = "walk";
                 animationIndex = 0;
@@ -267,7 +275,7 @@ public class UnitManager : MonoBehaviour
             if (other.gameObject.tag == "Enemy")
             {
                 UnitManager unit = other.gameObject.GetComponent<UnitManager>();
-                if (status == "wait" && waitTarget == other.gameObject)
+                if (status == "wait" && waitTarget == other.gameObject && !unit.boss)
                 {
                     waitTarget = null;
                     status = "walk";
