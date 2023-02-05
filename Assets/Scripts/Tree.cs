@@ -30,6 +30,8 @@ public class Tree : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip attackAudio;
     public List<AudioClip> buildAudios = new List<AudioClip>();
+    public List<AudioClip> clickTowerButtonAudios = new List<AudioClip>();
+    public List<AudioClip> steelRootAudios = new List<AudioClip>();
 
     public List<GameObject> buildingsButtons = new List<GameObject>();
     public List<GameObject> towersPrefab = new List<GameObject>();
@@ -200,6 +202,10 @@ public class Tree : MonoBehaviour
             } 
             else
             {
+                if (audioSource != null)
+                {
+                    audioSource.PlayOneShot(steelRootAudios[Random.Range(0, steelRootAudios.Count)]);
+                }
                 roots.DestroyRoot();
                 actualLifeOfRoot = lifeOfRoot;
             }
@@ -209,6 +215,10 @@ public class Tree : MonoBehaviour
 
     public void TreeBuild(int tower)
     {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(clickTowerButtonAudios[Random.Range(0, clickTowerButtonAudios.Count)]);
+        }
         if (tower == (int)Buildings.Roots)
         {
             if (actualStamina - buildingsPrice[0] >= 0) {

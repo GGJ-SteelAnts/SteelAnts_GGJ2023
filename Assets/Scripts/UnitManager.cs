@@ -30,17 +30,28 @@ public class UnitManager : MonoBehaviour
     private TowerManager targetTower;
     private Tree tree;
     public AudioSource audioSource;
+    public AudioSource wordsSource;
     public List<AudioClip> cutAudios = new List<AudioClip>();
     public List<AudioClip> deathAudios = new List<AudioClip>();
+    public List<AudioClip> firstWordsAudios = new List<AudioClip>();
+    public List<AudioClip> lastWordsAudios = new List<AudioClip>();
+    public List<AudioClip> bloodAudios = new List<AudioClip>();
     public GameObject waitTarget;
     private ParticleSystem blood;
+    private BoxCollider2D boxCollider;
 
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
         blood = GetComponentInChildren<ParticleSystem>();
         tree = GameObject.FindGameObjectWithTag("Tree").GetComponent<Tree>();
         actualHealth = health;
         UnitView = this.GetComponentInChildren<SpriteRenderer>();
+        int index = Random.Range(0, firstWordsAudios.Count);
+        if (wordsSource != null && firstWordsAudios[index] != null)
+        {
+            wordsSource.PlayOneShot(firstWordsAudios[index]);
+        }
     }
 
     void Update()
@@ -67,6 +78,7 @@ public class UnitManager : MonoBehaviour
         {
             if (status != "die")
             {
+                boxCollider.enabled = false;
                 blood.Play();
                 animationIndex = 0;
                 tree.ConsumeEnergy(-energy);
@@ -182,6 +194,11 @@ public class UnitManager : MonoBehaviour
                         break;
                     case "die":
                         if (animationIndex == 0) {
+                            audioSource.PlayOneShot(bloodAudios[Random.Range(0, bloodAudios.Count)]);
+                            int index = Random.Range(0, lastWordsAudios.Count);
+                            if (lastWordsAudios[index] != null) {
+                                wordsSource.PlayOneShot(lastWordsAudios[index]);
+                            }
                             audioSource.PlayOneShot(deathAudios[Random.Range(0, deathAudios.Count)]);
                         }
                         break;

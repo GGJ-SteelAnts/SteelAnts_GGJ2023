@@ -18,6 +18,8 @@ public class CastleManager : MonoBehaviour
     private Tree tree;
     public SpriteRenderer woodView;
     public List<Sprite> woodsView = new List<Sprite>();
+    public List<AudioClip> upgradeAudios = new List<AudioClip>();
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -43,12 +45,16 @@ public class CastleManager : MonoBehaviour
 
         if (lastSpawnInterval < Time.time)
         {
-            lastSpawnInterval = Time.time + spawnUnitsInterval - (tree.roots.roots.Count * 0.3f);
+            lastSpawnInterval = Time.time + spawnUnitsInterval - (tree.roots.roots.Count * 0.35f);
             SpawnUnits();
         }
 
         if (actualHaveWood >= neededWoodToLevelUp)
         {
+            if (audioSource != null && upgradeAudios.Count > 0)
+            {
+                audioSource.PlayOneShot(upgradeAudios[Random.Range(0, upgradeAudios.Count)]);
+            }
             level++;
             actualHaveWood -= neededWoodToLevelUp;
             neededWoodToLevelUp = neededWoodToLevelUp * 2;
