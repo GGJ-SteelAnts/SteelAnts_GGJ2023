@@ -63,7 +63,7 @@ public class UnitManager : MonoBehaviour
 
         if (status == "cut" && actualTimeToCutWood < Time.time)
         {
-            tree.GetDamage(damage * (boss ? 5 : 1));
+            tree.GetDamage(damage * (boss ? 2 : 1));
             status = "walk";
             haveWood = true;
             animationIndex = 0;

@@ -138,7 +138,7 @@ MonoBehaviour:
   health: 100
   actualHealth: 0
   neededlevel: 1
-  damage: 2
+  damage: 4
   damageRate: 0.5
   energy: 50
   status: walk

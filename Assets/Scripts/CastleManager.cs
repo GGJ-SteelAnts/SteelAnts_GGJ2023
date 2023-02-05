@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CastleManager : MonoBehaviour
 {
     public float health = 100;
-    private float actualHealth;
+    public float actualHealth;
     public List<GameObject> units = new List<GameObject>();
     private List<GameObject> usableUnits = new List<GameObject>();
     public List<GameObject> bosses = new List<GameObject>();
@@ -28,6 +29,7 @@ public class CastleManager : MonoBehaviour
     public int unitCounter = 0;
     private GameObject bossComming;
     public float delaySpawn = 7.0f;
+    public Image healthbar;
 
     void Start()
     {
@@ -46,6 +48,9 @@ public class CastleManager : MonoBehaviour
 
     void Update()
     {
+        float onePercent = (float)health / 100f;
+        float actualHavePercent = (float)actualHealth / onePercent;
+        healthbar.fillAmount = (1f / 100f) * actualHavePercent;
         if (actualHealth <= health/2)
         {
             castleView.sprite = castleUnderHalfHealth;
