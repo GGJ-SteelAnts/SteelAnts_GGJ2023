@@ -103,8 +103,8 @@ MonoBehaviour:
   actualHP: 0
   Stamina: 100
   actualStamina: 0
-  damage: 20
-  buildingsPrice: 14000000050000000a000000
+  damage: 50
+  buildingsPrice: 1e0000000a00000014000000
   towerBuildingCursor: {fileID: 2800000, guid: bf9cc5de7600d4491b6c16ce04e0efa2, type: 3}
   towerHoverCursor: {fileID: 2800000, guid: bd9cf4c6690ec4ecdb31d9c5528bdf20, type: 3}
   viewGood:

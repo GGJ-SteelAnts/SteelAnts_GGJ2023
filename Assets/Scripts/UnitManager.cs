@@ -12,7 +12,7 @@ public class UnitManager : MonoBehaviour
     public float damageRate = 0.5f;
     private float actualDamageRate;
     public int energy = 10;
-    public string status = "walk"; //walk,cut,attack,die
+    public string status = "walk"; //walk,cut,attack,die,wait
     [HideInInspector]public bool walk = true;
     public float walkSpeed = 5.0f;
     [HideInInspector]public bool haveWood = false;
@@ -32,9 +32,12 @@ public class UnitManager : MonoBehaviour
     public AudioSource audioSource;
     public List<AudioClip> cutAudios = new List<AudioClip>();
     public List<AudioClip> deathAudios = new List<AudioClip>();
+    public GameObject waitTarget;
+    private ParticleSystem blood;
 
     void Start()
     {
+        blood = GetComponentInChildren<ParticleSystem>();
         tree = GameObject.FindGameObjectWithTag("Tree").GetComponent<Tree>();
         actualHealth = health;
         UnitView = this.GetComponentInChildren<SpriteRenderer>();
@@ -64,6 +67,7 @@ public class UnitManager : MonoBehaviour
         {
             if (status != "die")
             {
+                blood.Play();
                 animationIndex = 0;
                 tree.ConsumeEnergy(-energy);
                 Destroy(this.gameObject, 15f);
@@ -72,6 +76,12 @@ public class UnitManager : MonoBehaviour
             haveWood = false;
         }
         UnitAudio();
+
+        if (waitTarget != null && waitTarget.gameObject.GetComponent<UnitManager>().status == "die")
+        {
+            waitTarget = null;
+            status = "walk";
+        }
     }
 
     private void UnitMove()
@@ -212,6 +222,16 @@ public class UnitManager : MonoBehaviour
                     haveWood = false;
                 }
             }
+
+            if (other.gameObject.tag == "Enemy")
+            {
+                UnitManager unit = other.gameObject.GetComponent<UnitManager>();
+                if (!unit.haveWood && unit.status != "die" && unit.waitTarget != this.gameObject && status == "walk" && !haveWood)
+                {
+                    waitTarget = other.gameObject;
+                    status = "wait";
+                }
+            }
         }
     }
 
@@ -225,6 +245,16 @@ public class UnitManager : MonoBehaviour
                 targetTower = null;
                 status = "walk";
                 animationIndex = 0;
+            }
+
+            if (other.gameObject.tag == "Enemy")
+            {
+                UnitManager unit = other.gameObject.GetComponent<UnitManager>();
+                if (status == "wait" && waitTarget == other.gameObject)
+                {
+                    waitTarget = null;
+                    status = "walk";
+                }
             }
         }
     }

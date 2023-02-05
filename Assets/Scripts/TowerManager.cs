@@ -12,9 +12,11 @@ public class TowerManager : MonoBehaviour
     public bool poison = false;
     public float damageRate = 0.5f;
     private float actualDamageRate;
+    private Tree tree;
 
     void Start()
     {
+        tree = GameObject.FindGameObjectWithTag("Tree").GetComponent<Tree>();
         actualHealth = health;
     }
 
@@ -59,6 +61,19 @@ public class TowerManager : MonoBehaviour
                         actualDamageRate = Time.time + damageRate;
                         unit.GetDamage(damage);
                         GetDamage(damage);
+                    }
+                }
+            }
+
+            if (type == Tree.Buildings.Tree)
+            {
+                if (actualDamageRate < Time.time)
+                {
+                    UnitManager unit = collision.gameObject.GetComponent<UnitManager>();
+                    if (unit.status != "die")
+                    {
+                        actualDamageRate = Time.time + damageRate;
+                        tree.ConsumeEnergy(-(int)((float)unit.energy * 0.2f));
                     }
                 }
             }

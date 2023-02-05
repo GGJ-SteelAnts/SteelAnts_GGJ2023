@@ -592,7 +592,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 480, y: 240}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -1435,18 +1435,6 @@ PrefabInstance:
       propertyPath: MainAudioSource
       value: 
       objectReference: {fileID: 519420033}
-    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: buildingsPrice.Array.data[0]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: buildingsPrice.Array.data[1]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
-      propertyPath: buildingsPrice.Array.data[2]
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 2450096320354758662, guid: eefb906714c51ba43bcdb5ff7763fd19, type: 3}
       propertyPath: buildingsButtons.Array.data[0]
       value: 

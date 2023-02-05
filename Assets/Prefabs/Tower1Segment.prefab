@@ -328,7 +328,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   health: 10
-  damage: 2
+  actualHealth: 0
+  damage: 3
   slower: 0
   poison: 0
-  damageRate: 0.3
+  damageRate: 0.38
