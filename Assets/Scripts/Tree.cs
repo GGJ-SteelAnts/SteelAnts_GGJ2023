@@ -161,7 +161,11 @@ public class Tree : MonoBehaviour
 
             if (viewEvil.Count > canBeDelete - 1 && canBeDelete - 1 >= 0) {
                 treeView.sprite = viewEvil[canBeDelete - 1];
-            } 
+            }
+            else if (viewEvil.Count <= canBeDelete - 1 && canBeDelete - 1 >= 0)
+            {
+                treeView.sprite = viewEvil[viewEvil.Count - 1];
+            }
             else
             {
                 treeView.sprite = viewEvil[0];
@@ -173,6 +177,10 @@ public class Tree : MonoBehaviour
         {
             treeView.sprite = viewGood[canBeDelete - 1];
         }
+        else if (viewGood.Count <= canBeDelete - 1 && canBeDelete - 1 >= 0)
+        {
+            treeView.sprite = viewGood[viewGood.Count - 1];
+        }
         else
         {
             treeView.sprite = viewGood[0];
@@ -182,6 +190,14 @@ public class Tree : MonoBehaviour
     public void ConsumeEnergy(int energyTake)
     {
         actualStamina -= energyTake;
+        if (actualStamina < 0)
+        {
+            actualStamina = 0;
+        }
+        else if (actualStamina > Stamina)
+        {
+            actualStamina = Stamina;
+        }
     }
 
     public void AttackSound()

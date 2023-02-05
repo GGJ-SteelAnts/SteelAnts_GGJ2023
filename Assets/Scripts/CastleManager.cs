@@ -23,7 +23,9 @@ public class CastleManager : MonoBehaviour
     public List<Sprite> woodsView = new List<Sprite>();
     public List<AudioClip> upgradeAudios = new List<AudioClip>();
     public AudioSource audioSource;
+    public int unitsBeforBoss = 40;
     public int unitCounter = 0;
+    private GameObject bossComming;
 
     void Start()
     {
@@ -54,9 +56,9 @@ public class CastleManager : MonoBehaviour
 
         if (lastSpawnInterval < Time.time)
         {
-            lastSpawnInterval = Time.time + spawnUnitsInterval - (tree.roots.roots.Count * 0.35f);
+            lastSpawnInterval = Time.time + spawnUnitsInterval - (tree.roots.roots.Count * (bossComming != null ? 0.01f : 0.35f));
             unitCounter++;
-            if (unitCounter >= 50) {
+            if (unitCounter >= unitsBeforBoss) {
                 unitCounter = 0;
                 SpawnBoss();
             } else {
@@ -110,7 +112,7 @@ public class CastleManager : MonoBehaviour
     {
         if (bosses.Count != 0)
         {
-            Instantiate(bosses[Random.Range(0, bosses.Count)], spawnPoint.position, spawnPoint.rotation);
+            bossComming = Instantiate(bosses[Random.Range(0, bosses.Count)], spawnPoint.position, spawnPoint.rotation);
         }
     }
 

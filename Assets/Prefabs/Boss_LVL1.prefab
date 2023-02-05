@@ -135,12 +135,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: 1
-  health: 300
+  health: 105
   actualHealth: 0
   neededlevel: 1
-  damage: 1
-  damageRate: 0.25
-  energy: 300
+  damage: 2
+  damageRate: 0.5
+  energy: 50
   status: walk
   walk: 1
   walkSpeed: 0.5
@@ -148,12 +148,12 @@ MonoBehaviour:
   unitSprites:
   - {fileID: 1408407613, guid: 23111190ccc5a45bfaace5af49672f5f, type: 3}
   cutAnimations:
-  - {fileID: -16744321, guid: a474a1bc3ae00eb428f42e8acb1c39f4, type: 3}
-  - {fileID: 1271569281, guid: a474a1bc3ae00eb428f42e8acb1c39f4, type: 3}
-  - {fileID: -2008688874, guid: a474a1bc3ae00eb428f42e8acb1c39f4, type: 3}
-  - {fileID: -1078397019, guid: a474a1bc3ae00eb428f42e8acb1c39f4, type: 3}
-  - {fileID: 1050209443, guid: a474a1bc3ae00eb428f42e8acb1c39f4, type: 3}
-  - {fileID: 1304061018, guid: a474a1bc3ae00eb428f42e8acb1c39f4, type: 3}
+  - {fileID: 2102798760, guid: 9dcb97f0ef02147b899ca2b9f2693c05, type: 3}
+  - {fileID: -1020477489, guid: 9dcb97f0ef02147b899ca2b9f2693c05, type: 3}
+  - {fileID: 2084305176, guid: 9dcb97f0ef02147b899ca2b9f2693c05, type: 3}
+  - {fileID: 1596124130, guid: 9dcb97f0ef02147b899ca2b9f2693c05, type: 3}
+  - {fileID: 295253749, guid: 9dcb97f0ef02147b899ca2b9f2693c05, type: 3}
+  - {fileID: -1495078503, guid: 9dcb97f0ef02147b899ca2b9f2693c05, type: 3}
   walkAnimations:
   - {fileID: 1408407613, guid: 23111190ccc5a45bfaace5af49672f5f, type: 3}
   - {fileID: -130846049, guid: 23111190ccc5a45bfaace5af49672f5f, type: 3}
@@ -163,22 +163,22 @@ MonoBehaviour:
   - {fileID: -1348137680, guid: 23111190ccc5a45bfaace5af49672f5f, type: 3}
   - {fileID: -2093358045, guid: 23111190ccc5a45bfaace5af49672f5f, type: 3}
   deathAnimations:
-  - {fileID: -1887283443, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -1635521368, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -502332073, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: 1605428449, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: 240626686, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -2069909687, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: 264872083, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: 819497721, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -1965002782, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -541031001, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: 2048077611, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -1804989854, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -349330417, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: 191416194, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: -1239356190, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
-  - {fileID: 385029481, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: -707264833, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: -979628305, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1530221330, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: -296728495, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 2099819707, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1172483861, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1983426745, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1555264277, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1058610581, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 507194144, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1272196320, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 1239467424, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: 252572176, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: -1387355816, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: -1212752081, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
+  - {fileID: -1898767725, guid: 2628fbda6f3d8449dad9730282b43a7e, type: 3}
   walkWithWoodAnimations: []
   timeToCutWood: 1
   animationTime: 0.1
@@ -196,15 +196,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 47308d4f4b7a77442823b357dcc82787, type: 3}
   - {fileID: 8300000, guid: 8cb309b4d485752488f34c2c52b65c9c, type: 3}
   - {fileID: 8300000, guid: ad9419f4fedd5bd448d8609ae80780fc, type: 3}
-  - {fileID: 8300000, guid: bd3fa19841f80ad439a0a85eaed5c7e9, type: 3}
-  - {fileID: 8300000, guid: f6fa20c70b5503243a8e710a7521a49e, type: 3}
-  - {fileID: 8300000, guid: 506533adec03c1745b46e047858aad14, type: 3}
-  - {fileID: 8300000, guid: 44b6eb9ba8b786143bb21c229ae66417, type: 3}
-  - {fileID: 8300000, guid: ed2f999a12c8f6a48aa93d35a34f9f90, type: 3}
-  - {fileID: 8300000, guid: c62a6e39f4d693e41b713a7ad55e2a22, type: 3}
-  - {fileID: 8300000, guid: b30c73e5d5f96a84da3629da2197c3d1, type: 3}
-  - {fileID: 8300000, guid: 7a3c358ad87aad144b108201750ada84, type: 3}
-  - {fileID: 8300000, guid: 8c473e09c68102b419a18359c049fb68, type: 3}
   firstWordsAudios:
   - {fileID: 8300000, guid: 1ee91c2368da71a4aa23ea9a3fdad397, type: 3}
   lastWordsAudios:
@@ -273,7 +264,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -369,7 +360,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

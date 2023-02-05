@@ -432,8 +432,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608713540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 6, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: -0.62, y: 5.4, z: 0}
+  m_LocalScale: {x: 4.5, y: 4.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 229609808}
@@ -1743,6 +1743,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1822569572}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: unitsBeforBoss
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
       propertyPath: units.Array.size
       value: 4

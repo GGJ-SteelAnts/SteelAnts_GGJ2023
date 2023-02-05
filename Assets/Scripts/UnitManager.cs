@@ -63,11 +63,9 @@ public class UnitManager : MonoBehaviour
 
         if (status == "cut" && actualTimeToCutWood < Time.time)
         {
-            tree.GetDamage(damage * (boss ? 2 : 1));
+            tree.GetDamage(damage * (boss ? 5 : 1));
             status = "walk";
-            if (!boss) {
-                haveWood = true;
-            }
+            haveWood = true;
             animationIndex = 0;
         }
 
@@ -228,9 +226,11 @@ public class UnitManager : MonoBehaviour
 
             if (other.gameObject.tag == "Tower")
             {
-                targetTower = other.gameObject.GetComponent<TowerManager>();
-                status = "attack";
-                animationIndex = 0;
+                if ((!haveWood && other.gameObject.transform.position.x < gameObject.transform.position.x) || (haveWood && other.gameObject.transform.position.x > gameObject.transform.position.x)) {
+                    targetTower = other.gameObject.GetComponent<TowerManager>();
+                    status = "attack";
+                    animationIndex = 0;
+                }
             }
 
             if (other.gameObject.tag == "Castle")
@@ -238,6 +238,9 @@ public class UnitManager : MonoBehaviour
                 if (haveWood)
                 {
                     CastleManager castle = other.gameObject.GetComponent<CastleManager>();
+                    castle.GetWood();
+                    castle.GetWood();
+                    castle.GetWood();
                     castle.GetWood();
                     haveWood = false;
                 }
