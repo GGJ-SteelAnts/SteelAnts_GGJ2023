@@ -27,9 +27,11 @@ public class CastleManager : MonoBehaviour
     public int unitsBeforBoss = 40;
     public int unitCounter = 0;
     private GameObject bossComming;
+    public float delaySpawn = 7.0f;
 
     void Start()
     {
+        lastSpawnInterval = Time.time + delaySpawn;
         tree = GameObject.FindGameObjectWithTag("Tree").GetComponent<Tree>();
         actualHealth = health;
         foreach (GameObject unit in units)
