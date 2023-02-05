@@ -22,6 +22,7 @@ public class CastleManager : MonoBehaviour
     public SpriteRenderer woodView;
     public List<Sprite> woodsView = new List<Sprite>();
     public List<AudioClip> upgradeAudios = new List<AudioClip>();
+    public List<AudioClip> stackWoodAudios = new List<AudioClip>();
     public AudioSource audioSource;
     public int unitsBeforBoss = 40;
     public int unitCounter = 0;
@@ -98,6 +99,10 @@ public class CastleManager : MonoBehaviour
 
     public void GetWood()
     {
+        if (audioSource != null && stackWoodAudios.Count > 0)
+        {
+            audioSource.PlayOneShot(stackWoodAudios[Random.Range(0, stackWoodAudios.Count)]);
+        }
         actualHaveWood++;
     }
 

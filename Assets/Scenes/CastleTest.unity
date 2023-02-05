@@ -1780,9 +1780,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: stackWoodAudios.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
       propertyPath: upgradeAudios.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: ed2e9e1e18a8fcb4ba390dfbe68e2136, type: 3}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: stackWoodAudios.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 398af0fb34443554dbb39d2ab47618df, type: 3}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: stackWoodAudios.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8531d6660c2f66345a6ee42a0361b5b3, type: 3}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: stackWoodAudios.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 670ac78801b318641b5d064591bb60c8, type: 3}
+    - target: {fileID: 4665116774815670486, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
+      propertyPath: stackWoodAudios.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 39ed7ed17c3209644b42d717d39d0ab4, type: 3}
     - target: {fileID: 4665116774815670487, guid: 7561899dc1ad3614ebff5daf23d79cdb, type: 3}
       propertyPath: m_RootOrder
       value: 3
