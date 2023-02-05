@@ -83,7 +83,7 @@ public class UnitManager : MonoBehaviour
                 blood.Play();
                 animationIndex = 0;
                 tree.ConsumeEnergy(-energy);
-                Destroy(this.gameObject, 15f);
+                Destroy(this.gameObject, (boss ? 5f : 15f));
             }
             status = "die";
             haveWood = false;

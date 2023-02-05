@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        Screen.SetResolution(1920, 960, true); //1920x960 , 960x480
+        Screen.SetResolution(960, 480, Screen.fullScreen); //1920x960 , 960x480
         if (victoryPanel != null && losePanel != null) {
             if (PlayerPrefs.GetInt("victory") == 1)
             {
